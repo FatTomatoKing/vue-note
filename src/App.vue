@@ -5,7 +5,8 @@
 
     <img src="./assets/logo.png" alt="logo">
     <SchoolInfo ref="sch"></SchoolInfo>
-    <StudentInfo></StudentInfo>
+    <!--    <StudentInfo student-name="张三" :school-age="18"></StudentInfo>-->
+    <StudentInfo student-name="张三" :school-age=18></StudentInfo>
   </div>
 </template>
 
