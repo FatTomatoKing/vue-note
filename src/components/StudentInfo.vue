@@ -37,9 +37,9 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 /* css 样式*/
-.demo {
-  background-color: orange;
+.demo  {
+  background-color: green;
 }
 </style>

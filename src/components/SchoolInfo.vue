@@ -1,11 +1,8 @@
 <template>
   <!--  组件的结构 html-->
   <div class="demo">
-    <h2>学校姓名：{{ schoolName | mySlice }}</h2>
+    <h2>学校姓名：{{ schoolName}}</h2>
     <h2>学校地址：{{ schoolAddress }}</h2>
-    <h2>x：{{ x }}</h2>
-    <input type="text" v-fbind:value="schoolName"><br/>
-    <button @click="showName">点我展示学校名称</button>
   </div>
 </template>
 
@@ -30,7 +27,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 /* css 样式*/
 .demo {
   background-color: orange;
