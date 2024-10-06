@@ -19,6 +19,10 @@ npm run build
 ```
 npm run lint
 ```
+### 查看某一个依赖的版本
+```
+npm view webpack versions
+```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
