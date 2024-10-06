@@ -10,10 +10,11 @@
 <script>
 export default {
   name: "TodoListItem",
-  props: ['todo','deleteTodo'],
+  props: ['todo','checkTodo','deleteTodo'],
   methods: {
     handleCheck(id) {
       console.log(id)
+      this.checkTodo(id)
     },
     deleteById(id){
       if (confirm("确定删除吗")){

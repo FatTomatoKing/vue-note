@@ -1,7 +1,6 @@
 <template>
   <ul class="todo-main">
     <TodoListItem v-for="todoItem in todoList" :key="todoItem.id" :todo="todoItem" :checkTodo='checkTodo' :deleteTodo="deleteTodo"/>
-
   </ul>
 </template>
 <script>

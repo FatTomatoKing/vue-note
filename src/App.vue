@@ -3,7 +3,7 @@
     <div class="todo-container">
       <TodoListHeader :receive="addTodo"/>
       <TodoList :todoList="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
-      <TodoListFooter/>
+      <TodoListFooter :todos="todos"/>
 
     </div>
   </div>
