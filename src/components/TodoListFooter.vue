@@ -1,7 +1,7 @@
 <template>
-  <div class="todo-footer">
+  <div class="todo-footer" v-show="todos.length">
     <label>
-      <input type="checkbox">
+      <input type="checkbox" :checked="isAll" @change="checkAll">
     </label>
     <span>
       <span>已完成{{ doneTotal }}</span>/ 全部{{ todos.length }}
@@ -14,7 +14,7 @@
 
 export default {
   name: "TodoListFooter",
-  props: ['todos'],
+  props: ['todos',"checkAllTodo"],
   computed: {
     doneTotal() {
       return this.todos.reduce((pre, current) => {
@@ -24,6 +24,14 @@ export default {
           return pre;
         }
       }, 0)
+    },
+    isAll(){
+      return this.doneTotal ===  this.todos.length
+    }
+  },
+  methods:{
+    checkAll(e){
+      this.checkAllTodo(e.target.checked)
     }
   }
 

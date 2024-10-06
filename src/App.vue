@@ -3,7 +3,7 @@
     <div class="todo-container">
       <TodoListHeader :receive="addTodo"/>
       <TodoList :todoList="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
-      <TodoListFooter :todos="todos"/>
+      <TodoListFooter :todos="todos" :checkAllTodo="checkAllTodo"/>
 
     </div>
   </div>
@@ -56,6 +56,11 @@ export default {
     deleteTodo(id){
       this.todos= this.todos.filter((todo)=>{
         return todo.id !== id
+      })
+    },
+    checkAllTodo(done){
+      this.todos.forEach((e)=>{
+        e.done = done
       })
     }
 
