@@ -2,7 +2,7 @@
   <div id="root">
     <div class="todo-container">
       <TodoListHeader :receive="addTodo"/>
-      <TodoList :todoList="todos" :checkTodo="checkTodo"/>
+      <TodoList :todoList="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
       <TodoListFooter/>
 
     </div>
@@ -51,6 +51,11 @@ export default {
         if (todo.id === id){
           todo.done = !todo.done
         }
+      })
+    },
+    deleteTodo(id){
+      this.todos= this.todos.filter((todo)=>{
+        return todo.id !== id
       })
     }
 
