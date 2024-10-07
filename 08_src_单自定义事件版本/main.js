@@ -11,8 +11,4 @@ new Vue({
   // render(createElement){
   //   return createElement("h1","你好啊");
   // }
-  beforeCreate() {
-    // 安装全局事件总线
-    Vue.prototype.$bus = this
-  }
 }).$mount('#app')

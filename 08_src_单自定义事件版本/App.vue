@@ -1,7 +1,7 @@
 <template>
   <div id="root">
     <div class="todo-container">
-      <TodoListHeader/>
+      <TodoListHeader @receive="addTodo"/>
       <TodoList :todoList="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
       <TodoListFooter :todos="todos" :checkAllTodo="checkAllTodo"/>
 
@@ -22,8 +22,8 @@ export default {
       todos: JSON.parse(localStorage.getItem("todos")) || []
     }
   },
-  watch: {
-    todos(value) {
+  watch:{
+    todos(value){
       localStorage.setItem("todos", JSON.stringify(value))
     }
   },
@@ -31,41 +31,28 @@ export default {
     TodoListFooter, TodoListHeader, TodoList
   },
   methods: {
-    addTodo(todoItem) {
+    addTodo(todoItem){
       this.todos.unshift(todoItem)
     },
-    checkTodo(id) {
-      this.todos.forEach((todo) => {
-        if (todo.id === id) {
+    checkTodo(id){
+      this.todos.forEach((todo)=>{
+        if (todo.id === id){
           todo.done = !todo.done
         }
       })
     },
-    deleteTodo(id) {
-      this.todos = this.todos.filter((todo) => {
+    deleteTodo(id){
+      this.todos= this.todos.filter((todo)=>{
         return todo.id !== id
       })
     },
-    checkAllTodo(done) {
-      this.todos.forEach((e) => {
+    checkAllTodo(done){
+      this.todos.forEach((e)=>{
         e.done = done
       })
     }
-  },
-  mounted() {
-    // 挂载
-    this.$bus.$on("receive", (data) => {
-      // 全局事件总线监听
-      console.log("全局事件总线收到数据", data)
-      this.addTodo(data)
-    });
-  },
-  beforeDestroy() {
-    // 一定要写,不写不知道为啥 全局会失效
-    this.$bus.$off("receive")
+
   }
-
-
 }
 </script>
 

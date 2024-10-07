@@ -27,7 +27,7 @@ export default {
       // 自定义事件 receive 是事件名称
       // 父级中 @receive 是 事件名称,addTodo 是方法名称,$emit 是发射的意思
       // 功能类似于java 的publish event <TodoListHeader @receive="addTodo"/>
-      this.$bus.$emit("receive", todoItem)
+      this.$emit("receive", todoItem)
       this.title = null
     }
   },
