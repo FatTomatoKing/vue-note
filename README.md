@@ -23,6 +23,9 @@ npm run lint
 ```
 npm view webpack versions
 ```
-
+### 消息订阅和发布
+```
+npm i pubsub-js
+```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

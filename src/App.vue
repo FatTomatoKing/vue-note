@@ -14,6 +14,7 @@
 import TodoListFooter from "@/components/TodoListFooter.vue";
 import TodoListHeader from "@/components/TodoListHeader.vue";
 import TodoList from "@/components/TodoList.vue";
+import pubsub from 'pubsub-js'
 
 export default {
   name: 'App',
@@ -54,11 +55,21 @@ export default {
   },
   mounted() {
     // 挂载
-    this.$bus.$on("receive", (data) => {
-      // 全局事件总线监听
-      console.log("全局事件总线收到数据", data)
+    // 第一种全局事件总线
+    // this.$bus.$on("receive", (data) => {
+    //   // 全局事件总线监听
+    //   console.log("全局事件总线收到数据", data)
+    //   this.addTodo(data)
+    // });
+
+    // 消息的发布于订阅
+    pubsub.subscribe("receive", (msg, data) => {
+      console.log("消息名:" + msg)
+      console.log(data)
       this.addTodo(data)
-    });
+    })
+
+
   },
   beforeDestroy() {
     // 一定要写,不写不知道为啥 全局会失效
