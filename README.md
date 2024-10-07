@@ -27,5 +27,9 @@ npm view webpack versions
 ```
 npm i pubsub-js
 ```
+### axios 
+```
+npm i axios
+```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
