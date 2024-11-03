@@ -1,82 +1,40 @@
 <template>
   <div id="root">
     <div class="todo-container">
-      <TodoListHeader/>
-      <TodoList :todoList="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
-      <TodoListFooter :todos="todos" :checkAllTodo="checkAllTodo"/>
-
+      <School @updateData="handleUpdateData"
+              @onChange="handleChange"></School>
+      <Student></Student>
     </div>
   </div>
 </template>
 
 <script>
 
-import TodoListFooter from "@/components/TodoListFooter.vue";
-import TodoListHeader from "@/components/TodoListHeader.vue";
-import TodoList from "@/components/TodoList.vue";
-import pubsub from 'pubsub-js'
+
+
+import School from "@/components/School.vue";
+import Student from "@/components/Student.vue";
 
 export default {
   name: 'App',
+  components: {Student, School},
   data() {
     return {
-      todos: JSON.parse(localStorage.getItem("todos")) || []
+
     }
   },
-  watch: {
-    todos(value) {
-      localStorage.setItem("todos", JSON.stringify(value))
+  methods:{
+    callback() {
+      alert("你个铺盖")
+    },
+    handleUpdateData(value){
+      console.log('从子组件接收到的值:', value)
+    },
+    handleChange(data){
+      console.log('名字:', data.name)
+      console.log('年龄:', data.age)
     }
-  },
-  components: {
-    TodoListFooter, TodoListHeader, TodoList
-  },
-  methods: {
-    addTodo(todoItem) {
-      this.todos.unshift(todoItem)
-    },
-    checkTodo(id) {
-      this.todos.forEach((todo) => {
-        if (todo.id === id) {
-          todo.done = !todo.done
-        }
-      })
-    },
-    deleteTodo(id) {
-      this.todos = this.todos.filter((todo) => {
-        return todo.id !== id
-      })
-    },
-    checkAllTodo(done) {
-      this.todos.forEach((e) => {
-        e.done = done
-      })
-    }
-  },
-  mounted() {
-    // 挂载
-    // 第一种全局事件总线
-    // this.$bus.$on("receive", (data) => {
-    //   // 全局事件总线监听
-    //   console.log("全局事件总线收到数据", data)
-    //   this.addTodo(data)
-    // });
-
-    // 消息的发布于订阅
-    pubsub.subscribe("receive", (msg, data) => {
-      console.log("消息名:" + msg)
-      console.log(data)
-      this.addTodo(data)
-    })
-
-
-  },
-  beforeDestroy() {
-    // 一定要写,不写不知道为啥 全局会失效
-    this.$bus.$off("receive")
   }
-
-
 }
 </script>
 
